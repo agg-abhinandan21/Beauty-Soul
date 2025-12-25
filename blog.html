@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Beauty & Soul</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== HEADER ===== */
+.blog-header{
+    background: linear-gradient(135deg,#c48b9f,#f3c5d8);
+    color:#fff;
+    padding:60px 20px;
+    text-align:center;
+}
+.blog-header h1{
+    font-size:42px;
+}
+.blog-header p{
+    margin-top:10px;
+    font-size:16px;
+    opacity:.9;
+}
+
+/* ===== BLOG SECTION ===== */
+.blog-container{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+}
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+/* ===== BLOG CARD ===== */
+.blog-card{
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.3s;
+}
+.blog-card:hover{
+    transform:translateY(-6px);
+}
+
+/* Instagram embed fix */
+.insta-post blockquote{
+    margin:0 auto !important;
+    max-width:100% !important;
+}
+
+/* ===== BLOG CONTENT ===== */
+.blog-content{
+    padding:20px;
+}
+.blog-content h3{
+    font-size:20px;
+    color:#333;
+}
+.blog-content p{
+    margin:10px 0;
+    font-size:14px;
+    color:#666;
+    line-height:1.6;
+}
+.blog-content a{
+    display:inline-block;
+    padding:8px 18px;
+    background:#c48b9f;
+    color:#fff;
+    border-radius:20px;
+    text-decoration:none;
+    font-size:14px;
+}
+.blog-content a:hover{
+    background:#a76c82;
+}
+
+/* ===== FOOTER ===== */
+.blog-footer{
+    background:#111;
+    color:#aaa;
+    text-align:center;
+    padding:20px;
+    font-size:14px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    .blog-header h1{font-size:32px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="blog-header">
+    <h1>Our Blog</h1>
+    <p>Instagram Images & Reels – Beauty, Health & Lifestyle</p>
+</div>
+
+<!-- ===== BLOG POSTS ===== -->
+<section class="blog-container">
+<div class="blog-grid">
+
+<!-- 🔹 INSTAGRAM IMAGE POST -->
+<div class="blog-card insta-post">
+    <blockquote class="instagram-media"
+      data-instgrm-permalink="https://www.instagram.com/p/POST_ID_HERE/"
+      data-instgrm-version="14">
+    </blockquote>
+
+    <!-- <div class="blog-content">
+        <h3>Natural Skin Care Tips</h3>
+        <p>Daily beauty tips directly from our Instagram page.</p>
+        <a href="#">Read More</a>
+    </div> -->
+</div>
+
+<!-- 🔹 INSTAGRAM REEL -->
+<div class="blog-card insta-post">
+    <blockquote class="instagram-media"
+      data-instgrm-permalink="https://www.instagram.com/reel/REEL_ID_HERE/"
+      data-instgrm-version="14">
+    </blockquote>
+
+    <!-- <div class="blog-content">
+        <h3>Yoga for Better Digestion</h3>
+        <p>Quick yoga routine reel for gut & digestive health.</p>
+        <a href="#">Read More</a>
+    </div> -->
+</div>
+
+<!-- 🔹 INSTAGRAM IMAGE POST -->
+<div class="blog-card insta-post">
+    <blockquote class="instagram-media"
+      data-instgrm-permalink="https://www.instagram.com/p/POST_ID_HERE/"
+      data-instgrm-version="14">
+    </blockquote>
+
+    <!-- <div class="blog-content">
+        <h3>Self-Care Lifestyle</h3>
+        <p>Simple habits to improve your daily lifestyle.</p>
+        <a href="#">Read More</a>
+    </div> -->
+</div>
+
+</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="blog-footer">
+    © 2025 Beauty & Soul. All Rights Reserved.
+</div>
+
+<!-- ===== INSTAGRAM SCRIPT (REQUIRED) ===== -->
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<script>
+function openMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beauty & Soul | Checkout</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+    }
+
+    .checkout-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      display: flex;
+      gap: 40px;
+      padding: 0 15px;
+    }
+
+    .left-panel,
+    .right-panel {
+      background: #fff;
+      border-radius: 8px;
+      padding: 25px 25px 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .left-panel {
+      flex: 3;
+    }
+
+    .right-panel {
+      flex: 2;
+      align-self: flex-start;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    h3 {
+      margin: 20px 0 10px;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .payment-options {
+      margin-top: 10px;
+    }
+
+    .payment-options label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 400;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .qr-box {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #faf5e6;
+      display: none;
+      font-size: 13px;
+    }
+
+    .qr-box img {
+      max-width: 160px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .btn-primary {
+      margin-top: 15px;
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    /* RIGHT PANEL (order summary) */
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .summary-item .name {
+      max-width: 70%;
+    }
+
+    .summary-item .qty {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .summary-row.total {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 12px;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      min-width: 20px;
+      padding: 2px 6px;
+      font-size: 12px;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      margin-right: 6px;
+    }
+
+    .product-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-right: 10px;
+      background: #eee;
+    }
+
+    .summary-item-left {
+      display: flex;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-wrapper {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="checkout-wrapper">
+  <!-- LEFT: FORM -->
+  <div class="left-panel">
+    <h2>Contact</h2>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required />
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="newsletter" />
+      <label for="newsletter" style="margin:0;font-weight:400;">Email me with news and offers</label>
+    </div>
+
+    <h3>Delivery</h3>
+
+    <label for="country">Country/Region</label>
+    <select id="country">
+      <option value="India" selected>India</option>
+      <option value="USA">United States</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label for="firstName">First name</label>
+        <input type="text" id="firstName" required />
+      </div>
+      <div>
+        <label for="lastName">Last name</label>
+        <input type="text" id="lastName" required />
+      </div>
+    </div>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" required />
+
+    <label for="address2">Apartment, suite, etc. (optional)</label>
+    <input type="text" id="address2" />
+
+    <div class="row">
+      <div>
+        <label for="city">City</label>
+        <input type="text" id="city" required />
+      </div>
+      <div>
+        <label for="state">State</label>
+        <input type="text" id="state" required />
+      </div>
+      <div>
+        <label for="zip">PIN / ZIP</label>
+        <input type="text" id="zip" required />
+      </div>
+    </div>
+
+    <label for="phone">Phone</label>
+    <input type="text" id="phone" required />
+
+    <h3>Payment method</h3>
+    <div class="payment-options">
+      <label>
+        <input type="radio" name="payment" value="QR" required />
+        Pay Online (QR)
+      </label>
+      <label>
+        <input type="radio" name="payment" value="COD" />
+        Cash on Delivery
+      </label>
+    </div>
+
+    <!-- QR BOX -->
+    <div class="qr-box" id="qrBox">
+      <strong>Scan this QR to pay:</strong>
+      <!-- apna QR image yaha daalna -->
+      <img src="qr.png" alt="QR Code" />
+      <span>Payment name: Beauty & Soul</span><br/>
+      <span>Note: Please complete payment and then click "Place Order".</span>
+    </div>
+
+    <button class="btn-primary" id="placeOrderBtn">Place Order</button>
+  </div>
+
+  <!-- RIGHT: ORDER SUMMARY -->
+  <div class="right-panel">
+    <h2>Order Summary</h2>
+    <div id="summaryList"></div>
+
+    <div class="summary-row">
+      <span>Subtotal</span>
+      <span id="subtotalText">₹0</span>
+    </div>
+    <div class="summary-row">
+      <span>Shipping</span>
+      <span id="shippingText">₹0</span>
+    </div>
+    <div class="summary-row total">
+      <span>Total</span>
+      <span id="totalText">₹0</span>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function openMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+<script>
+const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+const shippingCharge = 0;
+
+function formatINR(value) {
+  return "₹" + value.toLocaleString("en-IN");
+}
+
+function renderSummary() {
+  const list = document.getElementById("summaryList");
+  list.innerHTML = "";
+  let subtotal = 0;
+
+  if(cartItems.length === 0){
+    list.innerHTML = "<p>Your cart is empty</p>";
+    return;
+  }
+
+  cartItems.forEach(item => {
+    const lineTotal = item.price * item.qty;
+    subtotal += lineTotal;
+
+    const div = document.createElement("div");
+    div.className = "summary-item";
+    div.innerHTML = `
+    <div class="summary-item-left">
+      <img src="${item.image}" class="product-thumb">
+      <div>
+        <div class="name">${item.name}</div>
+        <div class="qty">${item.qty} × ${formatINR(item.price)}</div>
+        <button onclick="removeFromCart(${item.id})"
+          style="margin-top:5px;background:red;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div>${formatINR(lineTotal)}</div>
+  `;
+      list.appendChild(div);
+    });
+
+
+  document.getElementById("subtotalText").textContent = formatINR(subtotal);
+  document.getElementById("shippingText").textContent = formatINR(shippingCharge);
+  document.getElementById("totalText").textContent = formatINR(subtotal + shippingCharge);
+}
+
+renderSummary();
+</script>
+
+<script>
+function removeFromCart(id){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // jis product ka id mila, usko hata do
+  cart = cart.filter(item => item.id !== id);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  // page reload taaki updated cart dikhe
+  location.reload();
+}
+</script>
+
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  let totalQty = 0;
+  cart.forEach(item => {
+    totalQty += item.qty;
+  });
+
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.innerText = totalQty;
+  }
+}
+
+// page load hote hi count update
+updateCartCount();
+</script>
+
+
+
+
+</body>
+</html>

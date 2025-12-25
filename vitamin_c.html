@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hydra Refresh Ultra Light Gel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ---------- GLOBAL ---------- */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff;
+  color:#333;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+/* ---------- PRODUCT SECTION ---------- */
+.product-section{
+  display:flex;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+/* Thumbnails */
+.thumbs{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.thumbs img{
+  width:70px;
+  border-radius:12px;
+  cursor:pointer;
+  border:1px solid #ddd;
+}
+
+/* Main Image */
+.main-image img{
+  width:360px;
+  border-radius:20px;
+}
+
+/* Details */
+.details{
+  max-width:420px;
+}
+.details h1{
+  font-size:26px;
+  margin-bottom:10px;
+}
+.subtitle{
+    color:var(--muted);
+    margin:0 0 14px;
+    font-size:15px;
+}
+
+.badges{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:12px 0 16px;
+}
+.badge{
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.06);
+    padding:8px 12px;
+    border-radius:10px;
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.details ul{
+  padding-left:18px;
+  margin:15px 0;
+}
+.details li{
+  margin-bottom:6px;
+}
+
+/* Price */
+.price{
+  font-size:28px;
+  font-weight:bold;
+}
+.mrp{
+  text-decoration:line-through;
+  color:#888;
+  font-size:16px;
+  margin-left:10px;
+}
+.offer{
+  color:#1aa37a;
+  font-size:14px;
+}
+
+/* Size */
+.size{
+  margin:20px 0;
+}
+.size span{
+  display:inline-block;
+  padding:10px 18px;
+  border:1px solid #000;
+  border-radius:8px;
+}
+
+/* Button */
+.cart-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#28b7a5;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* ---------- TABS ---------- */
+.product-tabs{
+  margin-top:80px;
+}
+
+.tab-buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.tab-btn{
+  padding:10px 18px;
+  border:1px solid #ccc;
+  background:#f5f5f5;
+  cursor:pointer;
+  border-radius:6px;
+}
+.tab-btn.active{
+  background:#d8f1ee;
+  border-color:#28b7a5;
+}
+
+.tab-content{
+  margin-top:25px;
+}
+.tab-pane{
+  display:none;
+}
+.tab-pane.active{
+  display:block;
+}
+.tab-pane p,
+.tab-pane li{
+  line-height:1.6;
+}
+
+/* ===== WHATSAPP FLOATING BUTTON ===== */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;   /* MOST IMPORTANT */
+    transition: 0.3s;
+}
+
+.whatsapp-float img {
+    width: 35px;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #1ebe5c;
+}
+
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    background: #25D366;
+    padding: 10px 15px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9998;
+}
+
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:25px;
+  margin-top:80px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .product-section{
+    flex-direction:column;
+  }
+  .main-image img{
+    width:100%;
+  }
+}
+
+/* FOOTER */
+.footer {
+    background: #111;
+    color: #fff;
+    padding: 60px 0 30px;
+    margin-top: 80px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-section h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.footer-section h4 {
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ccc;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.footer-social img {
+    width: 32px;
+    margin-right: 10px;
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 15px;
+    color: #aaa;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header"></div>
+
+<div class="container">
+
+  <!-- PRODUCT -->
+  <div class="product-section">
+
+    <!-- Thumbnails -->
+    <div class="thumbs">
+      <img src="image/3.jpg" onclick="changeImage(this)">
+      <img src="image/8.jpg" onclick="changeImage(this)">
+      <img src="image/9.jpg" onclick="changeImage(this)">
+      <img src="image/21.png" onclick="changeImage(this)">
+    </div>
+
+    <!-- Main Image -->
+    <div class="main-image">
+      <img id="bigImage" src="image/16.png">
+    </div>
+
+    <!-- Details -->
+    <div class="details">
+      <h1>Beauty & Soul – Vitamin-C Face Serum (30ml)</h1>
+
+        <div class="badges">
+          <div class="badge">High Potency Vitamin-C</div>
+          <div class="badge">Reduces Pigmentation</div>
+          <div class="badge">Dermatologically Tested</div>
+          <div class="badge">No Greasy Residue</div>
+        </div>
+
+
+      <ul>
+        <li>Brightening</li>
+        <li> Pigmentation Control</li>
+        <li>Glow Enhancing</li>
+        <li>Lightweight & Fast-Absorbing</li>
+      </ul>
+
+      <div class="price">
+        ₹402<span class="mrp">₹619</span>
+      </div>
+      <div class="offer">(35% OFF) Inclusive of all taxes</div>
+
+      <div class="size">
+        <span>30 ml</span>
+      </div>
+
+      <a href="cart.html">
+        <button class= "cart-btn"
+                onclick="event.stopPropagation(); addToCart({
+                id: 14,
+                name: 'Vitamin C Face Serum (30ml)',
+                price: 402,
+                image: 'image/21.png'
+                })">
+                Add to Cart
+            </button>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- TABS -->
+  <div class="product-tabs">
+
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openTab(event,'benefits')">Key benefits</button>
+      <button class="tab-btn" onclick="openTab(event,'ingredients')">Key ingredients</button>
+      <button class="tab-btn" onclick="openTab(event,'use')">How to use</button>
+      <button class="tab-btn" onclick="openTab(event,'info')">Additional information</button>
+    </div>
+
+    <div class="tab-content">
+
+      <div id="benefits" class="tab-pane active">
+         <ul>
+              <li>Boosts radiance & natural glow</li>
+              <li>Reduces pigmentation & dark spots</li>
+              <li>Fades acne marks & evens skin tone</li>
+              <li>Lightweight, fast-absorbing, non-sticky</li>
+              <li>Antioxidant protection against pollution & free radicals</li>
+         </ul>
+      </div>
+
+      <div id="ingredients" class="tab-pane">
+        <ul>
+            <li>Orange Extract </li>
+            <li>Lemon Extract</li>
+            <li>Ascorbic Acid (Vitamin-C)</li>
+            <li>Turmeric Extract</li>
+            <li>Almond Oil</li>
+            <li>Natural Antioxidants & Moisturizers</li>
+        </ul>
+      </div>
+
+      <div id="use" class="tab-pane">
+        <ul>
+              <li>Cleanse face thoroughly.</li>
+              <li>Apply 2–3 drops on face & neck, massage until absorbed.</li>
+              <li>Follow with moisturizer. Use nightly for best results.</li>
+              <li>Use sunscreen during the day while using Vitamin-C.</li>
+        </ul>
+      </div>
+
+      <div id="info" class="tab-pane">
+        <ul>
+            <li><b>Brand:</b> Beauty & Soul</li>
+            <li><b>Product Name:</b> Vitamin Face Serum</li>
+            <li><b>Quantity:</b> 30ml</li>
+            <li><b>Skin Type:</b> All Skin Types</li>
+            <li><b>Purpose:</b> Brightening, Hydration, Dark Spot Reduction</li>
+            <li><b>Texture:</b> Lightweight, Fast-Absorbing</li>
+            <li><b>Fragrance:</b> Mild Fresh Vitamin Aroma</li>
+            <li><b>Key Ingredients:</b> Vitamin C, Hyaluronic Acid, Niacinamide, Aloe Vera</li>
+            <li><b>Country of Origin:</b> India</li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/919045444099" class="whatsapp-float" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="WhatsApp">
+</a>
+
+<div class="whatsapp-bubble">
+    <span>Chat with us!</span>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- BRAND INFO -->
+        <div class="footer-section">
+            <h3>Beauty & Soul</h3>
+            <p>Pure. Honest. Soulful Skincare.</p>
+            <p>We create gentle, effective and science-powered skincare for every skin type.</p>
+
+            <div class="footer-social">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#top">Home</a><br>
+                <a href="aboutus.html">About Us</a><br>
+                <a href="products.html">Products</a><br>
+                <!-- <a href="#best-selling">Best Collections</a> -->
+                <a href="blog.html">Blogs</a><br>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+
+            <!-- CUSTOMER CARE -->
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <a href="privacy_policy.html">Privacy Policy</a><br>
+                <a href="shipping_policy.html">Shipping Policy</a><br>
+                <a href="return_refund.html">Return & Refund</a><br>
+                <a href="track_order.html">Track Order</a><br>
+                <a href="faq.html">FAQs</a><br>
+                <a href="terms_conditions.html">Terms and Conditions</a>
+            </div>
+
+        <!-- CONTACT -->
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: support@beautyandsoul.in</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Address: New Delhi, India</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Beauty & Soul. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+function changeImage(el){
+  document.getElementById("bigImage").src = el.src;
+}
+
+function openTab(evt, tabName){
+  let tabs = document.querySelectorAll(".tab-pane");
+  let btns = document.querySelectorAll(".tab-btn");
+
+  tabs.forEach(t => t.classList.remove("active"));
+  btns.forEach(b => b.classList.remove("active"));
+
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
+}
+</script>
+
+<script>
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("header").innerHTML = data;
+});
+</script>
+
+<script>
+function openMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+<script>
+function addToCart(product){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check product already exists
+  const existing = cart.find(item => item.id === product.id);
+
+  if(existing){
+    existing.qty += 1;
+  } else {
+    product.qty = 1;
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  // redirect to cart page
+  window.location.href = "cart.html";
+}
+</script>
+
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  let totalQty = 0;
+  cart.forEach(item => {
+    totalQty += item.qty;
+  });
+
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.innerText = totalQty;
+  }
+}
+
+// page load hote hi count update
+updateCartCount();
+</script>
+
+</body>
+</html>
+
+

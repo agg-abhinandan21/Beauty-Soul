@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty & Soul | Homepage</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+
+        /* ---------------- DESKTOP HEADER (COSRX STYLE) ---------------- */
+        .main-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 18px 40px;
+            border-bottom: 1px solid #ddd;
+            background: white;
+        }
+
+        /* LEFT SEARCH ICON */
+        .header-left {
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* CENTER LOGO */
+        .header-center {
+            text-align: center;
+        }
+
+        .brand-logo {
+            width: 70px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-family: 'Times New Roman';
+        }
+
+        /* RIGHT SECTION */
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 18px;
+            font-size: 16px;
+        }
+
+        .cart-icon {
+            font-size: 22px;
+        }
+
+        /* ---------------- DESKTOP BOTTOM MENU ---------------- */
+        .bottom-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+        }
+
+        /* ---------------- MOBILE VIEW (KEEP SAME) ---------------- */
+        @media (max-width: 900px) {
+
+            /* Desktop menu hide on phone */
+            .bottom-nav {
+                display: none;
+            }
+
+            /* Search icon hide */
+            .header-left {
+                display: none;
+            }
+
+            /* Desktop grid header → mobile flex header */
+            .main-header {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 20px;
+            }
+
+            .header-right {
+                gap: 12px;
+            }
+        }
+
+
+        /* ---------------- MOBILE SLIDE MENU (RIGHT SIDE) ---------------- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 270px;
+            height: 100%;
+            background: #111;
+            color: white;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            text-align: left; /* text stays on LEFT */
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0); /* slide in from right */
+        }
+
+        .close-btn {
+            font-size: 28px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 9990;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        
+        /* ===== FAQ SECTION ===== */
+
+        .faq-section {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .faq-section h1 {
+            text-align: center;
+            font-size: 36px;
+        }
+
+        .faq-subtext {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .faq-container {
+            width: 100%;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 15px 20px;
+            background: #000;
+            color: #fff;
+            font-size: 18px;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #333;
+        }
+
+        .faq-answer {
+            display: none;
+            background: #fafafa;
+            padding: 15px 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .faq-answer p {
+            margin: 0;
+            font-size: 16px;
+            color: #444;
+        }
+
+        /* ===== WHATSAPP FLOATING BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;   /* MOST IMPORTANT */
+            transition: 0.3s;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1ebe5c;
+        }
+
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: #25D366;
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 9998;
+        }
+
+
+        /* FOOTER */
+        .footer {
+        background: #111;
+        color: #fff;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+        font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        }
+
+        .footer-section {
+        flex: 1;
+        min-width: 220px;
+        }
+
+        .footer-section h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        }
+
+        .footer-section h4 {
+        font-size: 20px;
+        margin-bottom: 14px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+        color: #ccc;
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        }
+
+        .footer-section a:hover {
+        color: #fff;
+        }
+
+        .footer-social img {
+        width: 32px;
+        margin-right: 10px;
+        filter: brightness(0) invert(1);
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .footer-social img:hover {
+        transform: scale(1.1);
+        }
+
+        .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 15px;
+        color: #aaa;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 900px) {
+            .footer-container {
+            flex-direction: column;
+            text-align: center;
+            }
+
+        .footer-social {
+            justify-content: center;
+            display: flex;
+        }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+    <!-- ---------------- HEADER ---------------- -->
+    <header class="main-header">
+
+        <!-- LEFT (DESKTOP) -->
+        <div class="header-left">🔍</div>
+
+        <!-- CENTER LOGO -->
+        <div class="header-center">
+            <img src="image/logo.png" class="brand-logo">
+            <div class="logo-text">Beauty & Soul</div>
+        </div>
+
+        <!-- RIGHT ACCOUNT + CART (DESKTOP + MOBILE SAME) -->
+        <div class="header-right">
+            <a href="#">Account</a>
+            <a href="cart.html">Cart</a>
+            <span class="cart-icon">🛒</span>
+            <span id="cart-count">0</span>
+
+            <!-- Mobile menu button -->
+            <div class="hamburger" onclick="openMenu()">☰</div>
+        </div>
+
+    </header>
+
+    <!-- ---------------- MOBILE MENU ---------------- -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">×</div>
+
+        <a href="#top">Home</a>
+        <a href="#best-selling">Best Seller</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="products.html">Products</a>
+        <a href="blog.html">Blogs</a>
+        <a href="contact_us.html">Contact Us</a>
+    </div>
+
+    <!-- ---------------- DESKTOP BOTTOM NAV ---------------- -->
+    <nav class="bottom-nav">
+        <a href="#top">Home</a>
+        <a href="#best-selling">Best Seller</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="products.html">Products</a>
+        <a href="blog.html">Blogs</a>
+        <a href="contact_us.html">Contact Us</a>
+
+    </nav>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq-section">
+        <h1>Frequently Asked Questions</h1>
+        <p class="faq-subtext">Find answers to the most common questions about Beauty & Soul products and services.</p>
+
+        <div class="faq-container">
+
+            <div class="faq-item">
+                <button class="faq-question">1. Beauty & Soul ke products safe hain?</button>
+                <div class="faq-answer">
+                    <p>Haan, hamare saare products dermatologically tested, safe aur high-quality ingredients se banaye gaye hain.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">2. Delivery kitne din me hoti hai?</button>
+                <div class="faq-answer">
+                    <p>Standard delivery 3–7 business days me hoti hai, location ke hisaab se thoda vary kar sakti hai.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">3. Order kaise track karein?</button>
+                <div class="faq-answer">
+                    <p>Aap “Track Order” page par apna Order ID & Mobile Number daal kar tracking dekh sakte ho.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">4. Return ya replacement kaise milega?</button>
+                <div class="faq-answer">
+                    <p>Agar product damaged, leaked, expired ya wrong item deliver hui ho, to 24–48 hours me hume contact karein.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">5. Payment methods kaun-kaun se available hain?</button>
+                <div class="faq-answer">
+                    <p>Hume COD, UPI, Net Banking, Credit/Debit Cards sab accept karte hain.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">6. International shipping available hai?</button>
+                <div class="faq-answer">
+                    <p>Abhi sirf India me shipping available hai. International soon aa rahi hai.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919045444099" class="whatsapp-float" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+
+    <div class="whatsapp-bubble">
+        <span>Chat with us!</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- BRAND INFO -->
+            <div class="footer-section">
+                <h3>Beauty & Soul</h3>
+                <p>Pure. Honest. Soulful Skincare.</p>
+                <p>We create gentle, effective and science-powered skincare for every skin type.</p>
+
+                <div class="footer-social">
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+                </div>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#top">Home</a><br>
+                <a href="aboutus.html">About Us</a><br>
+                <a href="products.html">Products</a><br>
+                <!-- <a href="#best-selling">Best Collections</a> -->
+                <a href="blog.html">Blogs</a><br>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+
+            <!-- CUSTOMER CARE -->
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <a href="privacy_policy.html">Privacy Policy</a><br>
+                <a href="shipping_policy.html">Shipping Policy</a><br>
+                <a href="return_refund.html">Return & Refund</a><br>
+                <a href="track_order.html">Track Order</a><br>
+                <a href="faq.html">FAQs</a><br>
+                <a href="terms_conditions.html">Terms and Conditions</a>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: support@beautyandsoul.in</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Address: New Delhi, India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Beauty & Soul. All Rights Reserved.
+        </div>
+    </footer>
+
+
+    <script>
+    function openMenu() {
+        document.getElementById("mobileMenu").classList.add("active");
+        document.getElementById("overlay").classList.add("active");
+    }
+    function closeMenu() {
+        document.getElementById("mobileMenu").classList.remove("active");
+        document.getElementById("overlay").classList.remove("active");
+    }
+    </script>
+
+        <!-- ===== FAQ TOGGLE SCRIPT ===== -->
+    <script>
+        const questions = document.querySelectorAll(".faq-question");
+
+        questions.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const answer = btn.nextElementSibling;
+
+                // Close all other answers
+                document.querySelectorAll(".faq-answer").forEach(a => {
+                    if (a !== answer) a.style.display = "none";
+                });
+
+                // Toggle selected answer
+                answer.style.display = answer.style.display === "block" ? "none" : "block";
+            });
+        });
+    </script>
+
+    <script>
+    function addToCart(product){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // check product already exists
+    const existing = cart.find(item => item.id === product.id);
+
+    if(existing){
+        existing.qty += 1;
+    } else {
+        product.qty = 1;
+        cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    // redirect to cart page
+    window.location.href = "cart.html";
+    }
+    </script>
+
+    <script>
+    function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    let totalQty = 0;
+    cart.forEach(item => {
+        totalQty += item.qty;
+    });
+
+    const cartCountEl = document.getElementById("cartCount");
+    if (cartCountEl) {
+        cartCountEl.innerText = totalQty;
+    }
+    }
+
+    // page load hote hi count update
+    updateCartCount();
+    </script>
+
+</body>
+</html>

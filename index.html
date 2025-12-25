@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty & Soul | Homepage</title>
+
+    <style>
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ---------------- DESKTOP HEADER (COSRX STYLE) ---------------- */
+        .main-header {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 18px 40px;
+            border-bottom: 1px solid #ddd;
+            background: white;
+        }
+
+        /* LEFT SEARCH ICON */
+        .header-left {
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* CENTER LOGO */
+        .header-center {
+            text-align: center;
+        }
+
+        .brand-logo {
+            width: 70px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-family: 'Times New Roman';
+        }
+
+        /* RIGHT SECTION */
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 18px;
+            font-size: 16px;
+        }
+
+        .cart-icon {
+            font-size: 22px;
+        }
+
+        /* ---------------- DESKTOP BOTTOM MENU ---------------- */
+        .bottom-nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+        }
+
+        /* ---------------- MOBILE VIEW (KEEP SAME) ---------------- */
+        @media (max-width: 900px) {
+
+            /* Desktop menu hide on phone */
+            .bottom-nav {
+                display: none;
+            }
+
+            /* Search icon hide */
+            .header-left {
+                display: none;
+            }
+
+            /* Desktop grid header → mobile flex header */
+            .main-header {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 20px;
+            }
+
+            .header-right {
+                gap: 12px;
+            }
+        }
+
+        /* ---------------- MOBILE SLIDE MENU (RIGHT SIDE) ---------------- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 270px;
+            height: 100%;
+            background: #111;
+            color: white;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            text-align: left; /* text stays on LEFT */
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0); /* slide in from right */
+        }
+
+        .close-btn {
+            font-size: 28px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 9990;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        .slider {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Slides row */
+        .slides {
+            display: flex;
+            width: 100%; /* 5 slides */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Every slide is 100% viewport width */
+        .slide {
+            width: 100%;   /* FIX #1 */
+            height: auto;    /* FIX #2 */
+            flex-shrink: 0;
+        }
+
+        /* Image perfect fit fix */
+        .slide img {
+            width: 100%;
+            height: auto;     /* FIX #3 (most important!) */
+            display: block;
+        }
+
+
+
+
+        /* Dots */
+        .dots {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #000;
+        }
+
+
+
+        /* ---------------- HERO ---------------- */
+        /* .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: #f4f4f4;
+        }
+
+        .hero h1 { font-size: 48px; }
+        .hero p { font-size: 18px; color: #555; }
+
+        .shop-btn {
+            padding: 12px 24px;
+            background: black;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            cursor: pointer;
+        } */
+
+        /* ---------------- PRODUCTS ---------------- */
+        .products { text-align: center; padding: 40px; }
+
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 250px;
+            padding: 15px;
+            border: 1px solid #eee;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .product img { width: 100%; }
+
+        .product button {
+            width: 100%;
+            padding: 10px;
+            background: black;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
+
+        /* Price */
+        .price{
+        font-size:28px;
+        font-weight:bold;
+        }
+        .mrp{
+        text-decoration:line-through;
+        color:#888;
+        font-size:16px;
+        margin-left:10px;
+        }
+        .offer{
+        color:#1aa37a;
+        font-size:14px;
+        }
+        
+
+        /* ======= WHAT IS BEAUTY & SOUL SECTION ======= */
+
+        .about-beauty-soul {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 20px;
+            background: #ffffff;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .abs-left {
+            max-width: 600px;
+        }
+
+        .about-beauty-soul h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .about-beauty-soul p {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .about-beauty-soul h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .about-beauty-soul ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-beauty-soul ul li {
+            font-size: 16px;
+            margin: 8px 0;
+            color: #333;
+        }
+
+        .abs-right img {
+            width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .about-beauty-soul {
+                text-align: center;
+                flex-direction: column;
+            }
+            
+            .abs-right img {
+                margin-top: 25px;
+                width: 100%;
+                max-width: 380px;
+            }
+        }
+
+
+        /* ======= WHY CHOOSE US SECTION ======= */
+
+        .choose-us {
+            padding: 60px 20px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        .choose-us h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .choose-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .choose-box {
+            background: white;
+            width: 250px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .choose-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .choose-box img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .choose-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .choose-box p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* ======= REASON TO TRUST US SECTION ======= */
+
+        /* .trust-section {
+            padding: 60px 20px;
+            background: #fafafa;
+            text-align: center;
+        }
+
+        .trust-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .trust-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .trust-box {
+            background: #ffffff;
+            width: 250px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+        }
+
+        .trust-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .trust-box img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .trust-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .trust-box p {
+            font-size: 15px;
+            color: #555;
+        } */
+
+        /* ======= TESTIMONIALS SECTION ======= */
+
+        .testimonials {
+            padding: 60px 20px;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-box {
+            width: 280px;
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+            text-align: left;
+        }
+
+        .testimonial-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-box p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-box h3 {
+            font-size: 16px;
+            color: #000;
+            font-weight: 600;
+        }
+
+
+
+        /* ===== WHATSAPP FLOATING BUTTON ===== */
+
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1ebe5c;
+        }
+
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: #25D366;
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 998;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* FOOTER */
+        .footer {
+        background: #111;
+        color: #fff;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+        font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        }
+
+        .footer-section {
+        flex: 1;
+        min-width: 220px;
+        }
+
+        .footer-section h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        }
+
+        .footer-section h4 {
+        font-size: 20px;
+        margin-bottom: 14px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+        color: #ccc;
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        }
+
+        .footer-section a:hover {
+        color: #fff;
+        }
+
+        .footer-social img {
+        width: 32px;
+        margin-right: 10px;
+        filter: brightness(0) invert(1);
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .footer-social img:hover {
+        transform: scale(1.1);
+        }
+
+        .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 15px;
+        color: #aaa;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 900px) {
+            .footer-container {
+            flex-direction: column;
+            text-align: center;
+            }
+
+        .footer-social {
+            justify-content: center;
+            display: flex;
+        }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- ---------------- HEADER ---------------- -->
+<header class="main-header">
+
+    <!-- LEFT (DESKTOP) -->
+    <div class="header-left">🔍</div>
+
+    <!-- CENTER LOGO -->
+    <div class="header-center">
+        <img src="image/logo.png" class="brand-logo">
+        <div class="logo-text">Beauty & Soul</div>
+    </div>
+
+    <!-- RIGHT ACCOUNT + CART (DESKTOP + MOBILE SAME) -->
+    <div class="header-right">
+        <!-- <a href="#">Account</a> -->
+        <a href="cart.html" class="cart-icon">
+        🛒 <span id="cartCount">0</span>
+        </a>
+
+        <!-- Mobile menu button -->
+        <div class="hamburger" onclick="openMenu()">☰</div>
+    </div>
+
+</header>
+
+<!-- ---------------- MOBILE MENU ---------------- -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" onclick="closeMenu()">×</div>
+
+    <a href="#top">Home</a>
+    <a href="#best-selling">Best Seller</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blogs</a>
+    <a href="contact_us.html">Contact Us</a>
+</div>
+
+<!-- ---------------- DESKTOP BOTTOM NAV ---------------- -->
+<nav class="bottom-nav">
+    <a href="#top">Home</a>
+    <a href="#best-selling">Best Seller</a>
+    <a href="aboutus.html">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="blog.html">Blogs</a>
+    <a href="contact_us.html">Contact Us</a>
+    
+</nav>
+
+<!-- ---------------- IMAGE SLIDER ---------------- -->
+<div class="slider">
+    <div class="slides">
+
+        <!-- Slide 1 -->
+        <div class="slide">
+            <img src="image/32.png" alt="">
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="image/33.png" alt="">
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="image/34.png" alt="">
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <img src="image/36.png" alt="">
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <img src="image/38.png" alt="">
+        </div>
+
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+
+
+<!-- HERO -->
+<!-- <section class="hero">
+    <h1>Glass Skin Starts Here</h1>
+    <p>Gentle. Effective. Dermatologist-tested formulas.</p>
+    <button class="shop-btn">Shop Now</button>
+</section> -->
+
+<section class="products" id="best-selling">
+    <h2>Best Selling Products</h2>
+
+    <div class="product-grid">
+
+        <!-- PRODUCT 1 -->
+        <div class="product" onclick="window.location.href='combo_8.html'">
+            <img src="image/41.png">
+            <h3>Beauty & Soul Complete Skin Care Combo Pack  
+                (Lotion + Face Wash + Scrub + Serum + Sunscreen)</h3>
+            <div class="price">₹1347 <span class="mrp">₹2,245</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 8,
+                name: 'Complete Skin Care Combo Pack (Lotion + Face Wash + Scrub + Serum + Sunscreen)',
+                price: 1347,
+                image: 'image/41.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product" onclick="window.location.href='combo_7.html'">
+            <img src="image/68.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Ubtan Face Scrub + Charcoal Face Wash Combo</h3>
+            <div class="price">₹562 <span class="mrp">₹937</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 7,
+                name: 'Honey & Almond Lotion + Ubtan Face Scrub + Charcoal Face Wash Combo',
+                price: 562,
+                image: 'image/68.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product" onclick="window.location.href='combo_10.html'">
+            <img src="image/45.png">
+            <h3>Beauty & Soul Sunscreen SPF 45+ PA+++ + Ubtan Face Scrub + Vitamin C Face Serum Combo</h3>
+            <div class="price">₹994 <span class="mrp">₹1,657</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 10,
+                name: 'Sunscreen SPF 45+ PA+++ + Ubtan Face Scrub + Vitamin C Face Serum Combo',
+                price: 994,
+                image: 'image/45.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 4 -->
+         <div class="product" onclick="window.location.href='combo_9.html'">
+            <img src="image/49.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Vitamin C Face Serum + Charcoal Face Wash Combo</h3>
+            <div class="price">₹724 <span class="mrp">₹1,207</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 9,
+                name: 'Honey & Almond Lotion + Vitamin C Face Serum + Charcoal Face Wash Combo',
+                price: 724,
+                image: 'image/49.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+</section>
+
+    <!-- ======= ABOUT BEAUTY & SOUL SECTION ======= -->
+    <section class="about-beauty-soul">
+    <div class="abs-left">
+        <h2>What is Beauty & Soul?</h2>
+        <p>
+            Beauty & Soul is a modern skincare brand dedicated to creating clean, 
+            effective, and luxurious self-care products.  
+            Hamara mission simple hai — natural beauty ko enhance karna while keeping 
+            your skin healthy, glowing, and nourished.  
+            Every product is crafted with love, premium ingredients, and science-backed 
+            formulations to give you real and visible results.
+        </p>
+
+        <h3>What We Provide</h3>
+        <ul>
+            <li>✔ Premium & safe skincare products</li>
+            <li>✔ Science-backed formulas</li>
+            <li>✔ Skin-friendly natural ingredients</li>
+            <li>✔ Affordable luxury experience</li>
+            <li>✔ Trusted customer support</li>
+        </ul>
+    </div>
+
+    <div class="abs-right">
+        <img src="image/15.png" alt="Beauty & Soul Skincare">
+    </div>
+</section>
+
+
+    <!-- ======= WHY CHOOSE US SECTION ======= -->
+    <section class="choose-us">
+        <h2>Why Choose Us</h2>
+
+        <div class="choose-container">
+
+            <div class="choose-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/785/785822.png" alt="Quality">
+                <h3>Premium Ingredients</h3>
+                <p>We use skin-safe & high-quality ingredients for effective results.</p>
+            </div>
+
+            <div class="choose-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="Science Backed">
+                <h3>Science-Backed Formulas</h3>
+                <p>Every formula is researched & tested for maximum performance.</p>
+            </div>
+
+            <div class="choose-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Authentic">
+                <h3>100% Authentic Products</h3>
+                <p>Directly sourced & fully original skincare products.</p>
+            </div>
+
+            <div class="choose-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="Support">
+                <h3>Trusted by Customers</h3>
+                <p>Thousands love our quality, purity & visible beauty results.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ======= TESTIMONIALS SECTION ======= -->
+    <section class="testimonials">
+        <h2>What Customers Say</h2>
+
+        <div class="testimonial-container">
+
+            <div class="testimonial-box">
+                <p>"Beauty & Soul ke products ne meri skin ko natural glow diya.  
+                Packaging bhi premium hai!"</p>
+                <h3>- Ayesha Khan</h3>
+            </div>
+
+            <div class="testimonial-box">
+                <p>"Mujhe acne ki problem thi, facewash use karne ke baad clear difference dikh raha hai."</p>
+                <h3>- Rohan Mehta</h3>
+            </div>
+
+            <div class="testimonial-box">
+                <p>"Fast delivery, authentic product & amazing fragrance. Loved it!"</p>
+                <h3>- Sakshi Sharma</h3>
+            </div>
+
+            <div class="testimonial-box">
+                <p>"Skin-friendly ingredients hone ki wajah se daily use karta hu, bilkul irritation nahi hoti."</p>
+                <h3>- Harshit Verma</h3>
+            </div>
+
+            <div class="testimonial-box">
+                <p>"Price ke hisaab se quality superb hai. Definitely recommend!"</p>
+                <h3>- Neha Gupta</h3>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919045444099" class="whatsapp-float" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+    <div class="whatsapp-bubble">
+    <span>Chat with us!</span>
+    </div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <!-- BRAND INFO -->
+        <div class="footer-section">
+            <h3>Beauty & Soul</h3>
+            <p>Pure. Honest. Soulful Skincare.</p>
+            <p>We create gentle, effective and science-powered skincare for every skin type.</p>
+
+            <div class="footer-social">
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="#">Home</a><br>
+            <a href="#">Products</a><br>
+            <a href="#">Best Collections</a><br>
+            <a href="#">Blogs</a><br>
+            <a href="#">About Us</a>
+        </div>
+
+        <!-- CUSTOMER CARE -->
+        <div class="footer-section">
+            <h4>Customer Care</h4>
+            <a href="#">Shipping Policy</a>
+            <br>
+            <a href="#">Return & Refund</a><br>
+            <a href="#">Track Order</a><br>
+            <a href="#">FAQs</a><br>
+            <a href="#">Support</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: support@beautyandsoul.in</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Address: New Delhi, India</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Beauty & Soul. All Rights Reserved.
+    </div>
+</footer>
+
+<!-- SLIDER SCRIPT -->
+<script>
+let index = 0;
+const slides = document.querySelector(".slides");
+const dots = document.querySelectorAll(".dot");
+
+function showSlide() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+}
+
+function autoSlide() {
+    index = (index + 1) % 5;
+    showSlide();
+}
+
+dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+        index = i;
+        showSlide();
+    });
+});
+
+// Auto change every 4 seconds
+setInterval(autoSlide, 4000);
+
+showSlide();
+</script>
+
+
+<script>
+function openMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+<script>
+function addToCart(product){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check product already exists
+  const existing = cart.find(item => item.id === product.id);
+
+  if(existing){
+    existing.qty += 1;
+  } else {
+    product.qty = 1;
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  // redirect to cart page
+  window.location.href = "cart.html";
+}
+</script>
+
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  let totalQty = 0;
+  cart.forEach(item => {
+    totalQty += item.qty;
+  });
+
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.innerText = totalQty;
+  }
+}
+
+// page load hote hi count update
+updateCartCount();
+</script>
+
+
+</body>
+</html>

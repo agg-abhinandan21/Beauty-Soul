@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About COSRX</title>
+
+    <!-- LENIS -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/dist/lenis.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ------------------ HEADER ------------------ */
+        .header {
+            background: #111;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: 0.8s ease;
+        }
+        .header.show { opacity: 1; transform: translateY(0); }
+
+        .header-left-title {
+            font-size: 26px;
+            font-weight: bold;
+            opacity: 0;
+            transition: 1s ease;
+        }
+        .show-left-title { opacity: 1 !important; }
+
+        /* ------------------ DESKTOP MENU ------------------ */
+        .desktop-menu {
+            display: flex;
+            gap: 50px;
+        }
+
+        .desktop-menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        /* ------------------ HAMBURGER (MOBILE ONLY) ------------------ */
+        .hamburger {
+            font-size: 32px;
+            cursor: pointer;
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .desktop-menu { display: none; }
+            .hamburger { display: block; }
+        }
+
+        /* ------------------ MOBILE SLIDE MENU ------------------ */
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 270px;
+            height: 100%;
+            background: #111;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+            transform: translateX(100%);
+            transition: 0.35s ease;
+            z-index: 9999;
+        }
+        .mobile-menu-container.active { transform: translateX(0); }
+
+        .close-btn {
+            font-size: 28px;
+            align-self: flex-end;
+            cursor: pointer;
+        }
+
+        .mobile-search {
+            padding: 10px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            border: none;
+        }
+
+        .mobile-menu-container a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* OVERLAY */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 9990;
+        }
+        .overlay.active { opacity: 1; pointer-events: auto; }
+
+        /* ------------------ BIG TITLE ------------------ */
+        .big-title {
+            font-size: 70px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 150px;
+            transition: 1s;
+        }
+        .animate-title {
+            transform: translate(-300px, -170px) scale(0.3);
+            opacity: 0;
+        }
+
+        /* ------------------ HERO SECTION ------------------ */
+        .about-hero {
+            margin: 20px;
+            border-radius: 30px;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            padding: 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s;
+            flex-wrap: wrap;
+        }
+        .about-hero.show { opacity: 1; transform: translateY(0); }
+
+        .about-text { max-width: 45%; min-width: 300px; }
+        .about-text h2 { font-size: 40px; font-weight: bold; }
+        .about-text p { font-size: 18px; line-height: 1.6; }
+
+        .about-images {
+            width: 50%;
+            min-width: 300px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1.2s;
+        }
+        .about-images.show { opacity: 1; transform: translateY(0); }
+
+        .about-images img {
+            width: 260px;
+            position: absolute;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .img1 { left: 5%; top: 0; }
+        .img2 { right: 10%; top: 5%; animation-delay: .5s; }
+        .img3 { left: 25%; bottom: -15%; animation-delay: 1s; }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* ------------------ NEW SECTIONS ------------------ */
+        .section {
+            margin: 60px auto;
+            width: 85%;
+            line-height: 1.7;
+        }
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        .section p {
+            font-size: 18px;
+        }
+
+        /* SECTION WITH IMAGE (TEXT LEFT + IMAGE RIGHT) */
+        .section-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        margin: 60px auto;
+        width: 85%;
+        flex-wrap: wrap;
+        }
+
+        .section-flex .text-box {
+        flex: 1;
+        min-width: 300px;
+        }
+
+        .section-flex .image-box {
+        flex: 1;
+        min-width: 280px;
+        display: flex;
+        justify-content: center;
+        }
+
+        .section-flex .image-box img {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 20px;
+        object-fit: cover;
+        }
+
+        /* ===== WHATSAPP FLOATING BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;   /* MOST IMPORTANT */
+            transition: 0.3s;
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1ebe5c;
+        }
+
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background: #25D366;
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 9998;
+        }
+
+
+        /* FOOTER */
+        .footer {
+        background: #111;
+        color: #fff;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+        font-family: Arial, sans-serif;
+        }
+
+        .footer-container {
+        width: 85%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        }
+
+        .footer-section {
+        flex: 1;
+        min-width: 220px;
+        }
+
+        .footer-section h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        }
+
+        .footer-section h4 {
+        font-size: 20px;
+        margin-bottom: 14px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+        color: #ccc;
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        }
+
+        .footer-section a:hover {
+        color: #fff;
+        }
+
+        .footer-social img {
+        width: 32px;
+        margin-right: 10px;
+        filter: brightness(0) invert(1);
+        cursor: pointer;
+        transition: 0.3s;
+        }
+
+        .footer-social img:hover {
+        transform: scale(1.1);
+        }
+
+        .footer-bottom {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 15px;
+        color: #aaa;
+        padding-top: 20px;
+        border-top: 1px solid #333;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 900px) {
+            .footer-container {
+            flex-direction: column;
+            text-align: center;
+            }
+
+        .footer-social {
+            justify-content: center;
+            display: flex;
+        }
+        }
+
+    </style>
+</head>
+
+<body class="lenis lenis-smooth">
+
+    <div class="overlay" id="overlay"></div>
+
+    <header class="header" id="mainHeader">
+        <div class="header-left-title" id="headerLeftText">Beauty & Soul</div>
+
+        <div class="desktop-menu">
+            <a href="#best-selling">BEST SELLING </a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="blog.html">BLOG</a>
+            <a href="aboutus.html">ABOUT</a>
+        </div>
+
+        <div class="hamburger" onclick="openMenu()">☰</div>
+    </header>
+
+    <div class="mobile-menu-container" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">×</div>
+        <input type="text" class="mobile-search" placeholder="Search...">
+        <a href="#best-selling">BEST SELLING </a>
+        <a href="products.html">PRODUCTS</a>
+        <a href="blog.html">BLOG</a>
+        <a href="aboutus.html">ABOUT</a>
+    </div>
+
+    <h1 class="big-title" id="bigTitle">Beauty & Soul</h1>
+
+    <section class="about-hero" id="heroSection">
+        <div class="about-text">
+            <h2>Friendly Derma for all, Beauty & Soul</h2>
+            <p>We create modern skincare with pure, skin-loving ingredients designed to enhance natural beauty.</p>
+            <p>Our mission is to deliver gentle, effective & science-backed solutions for a better tomorrow.</p>
+        </div>
+
+        <div class="about-images" id="heroImages">
+            <img src="image/21.png" class="img1">
+            <img src="image/22.png" class="img2">
+            <img src="image/24.png" class="img3">
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <div class="section">
+        <h2>🌸 About Beauty & Soul</h2>
+        <p>Beauty & Soul ek modern skincare brand hai jo natural beauty ko enhance karne ke saath inner confidence ko bhi strengthen karta hai. Hum believe karte hain ki beautiful skin sirf products se nahi, balki consistent care aur pure ingredients se banti hai.</p>
+        <p>Isi liye humne aise skincare solutions create kiye hain jo gentle, effective aur long-term results provide karte hain. Har formulation science-backed research aur skin-loving ingredients se develop hoti hai.</p>
+        <p>Beauty & Soul ka aim hai aapki daily skincare routine ko ek soothing, luxurious aur self-care experience mein transform karna.</p>
+    </div>
+
+     <!-- PHILOSOPHY (TEXT LEFT + IMAGE RIGHT) -->
+    <div class="section-flex">
+        <div class="text-box">
+            <h2>💫 Our Philosophy</h2>
+            <p>Beauty & Soul ki philosophy teen pillars par based hai: <b>Purity, Honesty, Soulfulness.</b></p>
+            <p>Skincare complicated nahi hona chahiye — clean ingredients + mindful application + consistent care = natural beauty.</p>
+            <p>Hamare liye beauty ek ritual hai, ek emotion hai, sirf ek product nahi.</p>
+        </div>
+
+        <div class="image-box">
+            <img src="image/31.webp" alt="Philosophy Image">
+        </div>
+    </div>
+
+
+    <!-- WHY CHOOSE US (TEXT LEFT + IMAGE RIGHT) -->
+    <div class="section-flex">
+        <div class="text-box">
+            <h2>💖 Why Choose Beauty & Soul?</h2>
+            <p>🌿 <b>Clean, Safe & Effective Ingredients:</b> Dermatologist-approved, toxin-free ingredients.</p>
+            <p>✨ <b>Visible Results — Naturally:</b> Healthy, gradual glow without fake promises.</p>
+            <p>🧪 <b>Science-Backed Formulations:</b> Expert-tested, research-driven skincare.</p>
+            <p>🧴 <b>Suitable for All Skin Types:</b> Oily, dry, sensitive — sab ke liye gentle products.</p>
+            <p>🐰 <b>Cruelty-Free Commitment:</b> No animal testing — ethical beauty.</p>
+            <p>🌸 <b>Premium Yet Affordable:</b> Luxury experience, fair pricing.</p>
+            <p>🤍 <b>A Brand That Cares:</b> We celebrate self-care, confidence & inner beauty.</p>
+        </div>
+
+        <div class="image-box">
+            <img src="image/30.jpg" alt="Why Choose Us Image">
+        </div>
+    </div>
+
+
+    <!-- VISION -->
+    <div class="section">
+        <h2>🎯 Our Vision</h2>
+        <p>Beauty & Soul ka vision hai ek aisa skincare world create karna jaha har individual apni natural glow ko confidently embrace kare. Hum toxic beauty standards ko todkar real, pure, soul-nourishing skincare promote karte hain.</p>
+    </div>
+
+    <!-- MISSION -->
+    <div class="section">
+        <h2>🚀 Our Mission</h2>
+        <p>Hamari mission hai high-quality, clean, cruelty-free aur dermatologist-approved products provide karna. Hum promise karte hain ki har product gentle, effective aur har skin type ke liye suitable ho.</p>
+        <p>Beauty & Soul ka main aim hai skincare ko simple, honest aur result-driven banana.</p>
+    </div>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919045444099" class="whatsapp-float" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+
+    <div class="whatsapp-bubble">
+        <span>Chat with us!</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- BRAND INFO -->
+            <div class="footer-section">
+                <h3>Beauty & Soul</h3>
+                <p>Pure. Honest. Soulful Skincare.</p>
+                <p>We create gentle, effective and science-powered skincare for every skin type.</p>
+
+                <div class="footer-social">
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174848.png"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+                </div>
+            </div>
+
+            <!-- QUICK LINKS -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#top">Home</a><br>
+                <a href="aboutus.html">About Us</a><br>
+                <a href="products.html">Products</a><br>
+                <!-- <a href="#best-selling">Best Collections</a> -->
+                <a href="blog.html">Blogs</a><br>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+
+            <!-- CUSTOMER CARE -->
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <a href="privacy_policy.html">Privacy Policy</a><br>
+                <a href="shipping_policy.html">Shipping Policy</a><br>
+                <a href="return_refund.html">Return & Refund</a><br>
+                <a href="track_order.html">Track Order</a><br>
+                <a href="faq.html">FAQs</a><br>
+                <a href="terms_conditions.html">Terms and Conditions</a>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: support@beautyandsoul.in</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Address: New Delhi, India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Beauty & Soul. All Rights Reserved.
+        </div>
+    </footer>
+
+   
+    <!-- LENIS INIT -->
+    <script>
+        const lenis = new Lenis({ smooth: true, duration: 1.2 });
+        function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+    </script>
+
+    <!-- PAGE ANIMATIONS -->
+    <script>
+        window.onload = () => {
+            const big = document.getElementById("bigTitle");
+            const left = document.getElementById("headerLeftText");
+            const header = document.getElementById("mainHeader");
+            const hero = document.getElementById("heroSection");
+            const images = document.getElementById("heroImages");
+
+            big.classList.add("animate-title");
+
+            setTimeout(() => left.classList.add("show-left-title"), 900);
+            setTimeout(() => header.classList.add("show"), 1400);
+            setTimeout(() => hero.classList.add("show"), 1400);
+            setTimeout(() => images.classList.add("show"), 1600);
+        };
+
+        function openMenu() {
+            document.getElementById("mobileMenu").classList.add("active");
+            document.getElementById("overlay").classList.add("active");
+        }
+        function closeMenu() {
+            document.getElementById("mobileMenu").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+        }
+    </script>
+
+    <script>
+function addToCart(product){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check product already exists
+  const existing = cart.find(item => item.id === product.id);
+
+  if(existing){
+    existing.qty += 1;
+  } else {
+    product.qty = 1;
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  // redirect to cart page
+  window.location.href = "cart.html";
+}
+</script>
+
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  let totalQty = 0;
+  cart.forEach(item => {
+    totalQty += item.qty;
+  });
+
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.innerText = totalQty;
+  }
+}
+
+// page load hote hi count update
+updateCartCount();
+</script>
+
+</body>
+</html>

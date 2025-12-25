@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Popup</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+    }
+
+    /* ---------------- PRODUCTS ---------------- */
+        .products { text-align: center; padding: 40px; }
+
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 250px;
+            padding: 15px;
+            border: 1px solid #eee;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .product img { width: 100%; }
+
+        .product button {
+            width: 100%;
+            padding: 10px;
+            background: black;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
+
+        /* Price */
+        .price{
+        font-size:28px;
+        font-weight:bold;
+        }
+        .mrp{
+        text-decoration:line-through;
+        color:#888;
+        font-size:16px;
+        margin-left:10px;
+        }
+        .offer{
+        color:#1aa37a;
+        font-size:14px;
+        }
+
+</style>
+
+</head>
+<body>
+
+<!--header-->
+<div id="header"></div>
+
+<section class="products">
+    <h2>Best Selling Products</h2>
+
+    <div class="product-grid">
+
+        <!-- PRODUCT 1 -->
+        <div class="product" onclick="window.location.href='combo_1.html'">
+            <img src="image/65.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Charcoal Face Wash Combo</h3>
+            <div class="price">₹352 <span class="mrp">₹588</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 1,
+                name: 'Honey & Almond Lotion + Charcoal Face Wash Combo',
+                price: 352,
+                image: 'image/65.png'
+                })">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <!-- PRODUCT 2 -->
+        <div class="product" onclick="window.location.href='combo_2.html'">
+            <img src="image/66.png">
+            <h3>Beauty & Soul Ubtan Face Scrub + Charcoal Face Wash Combo</h3>
+            <div class="price">₹418 <span class="mrp">₹698</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 2,
+                name: 'Ubtan Face Scrub + Charcoal Face Wash Combo',
+                price: 418,
+                image: 'image/66.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 3 -->
+        <div class="product" onclick="window.location.href='combo_3.html'">
+            <img src="image/42.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Vitamin C Face Serum Combo</h3>
+            <div class="price">₹515 <span class="mrp">₹858</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 3,
+                name: 'Honey & Almond Lotion + Vitamin C Face Serum Combo',
+                price: 515,
+                image: 'image/42.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 4 -->
+        <div class="product" onclick="window.location.href='combo_4.html'">
+            <img src="image/43.png">
+            <h3>Beauty & Soul Ubtan Face Scrub + Vitamin C Face Serum Combo</h3>
+            <div class="price">₹580 <span class="mrp">₹968</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 4,
+                name: 'Ubtan Face Scrub + Vitamin C Face Serum Combo',
+                price: 580,
+                image: 'image/43.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 5 --> 
+        <div class="product" onclick="window.location.href='combo_5.html'">
+            <img src="image/47.png">
+            <h3>Beauty & Soul Sunscreen SPF 45+ PA+++ + Vitamin C Face Serum Combo</h3>
+            <div class="price">₹784 <span class="mrp">₹1,308</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 5,
+                name: 'Sunscreen SPF 45+ PA+++ + Vitamin C Face Serum Combo',
+                price: 784,
+                image: 'image/47.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 6 -->
+        <div class="product" onclick="window.location.href='combo_6.html'">
+            <img src="image/46.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Sunscreen SPF 45+ PA+++ Combo</h3>
+            <div class="price">₹556 <span class="mrp">₹928</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 6,
+                name: 'Honey & Almond Lotion + Sunscreen SPF 45+ PA+++ Combo',
+                price: 556,
+                image: 'image/46.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 7 -->
+        <div class="product" onclick="window.location.href='combo_7.html'">
+            <img src="image/68.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Ubtan Face Scrub + Charcoal Face Wash Combo</h3>
+            <div class="price">₹562 <span class="mrp">₹937</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 7,
+                name: 'Honey & Almond Lotion + Ubtan Face Scrub + Charcoal Face Wash Combo',
+                price: 562,
+                image: 'image/68.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 8 -->
+        <div class="product" onclick="window.location.href='combo_8.html'">
+            <img src="image/41.png">
+            <h3>Beauty & Soul Complete Skin Care Combo Pack  
+                (Lotion + Face Wash + Scrub + Serum + Sunscreen)</h3>
+            <div class="price">₹1347 <span class="mrp">₹2,245</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 8,
+                name: 'Complete Skin Care Combo Pack (Lotion + Face Wash + Scrub + Serum + Sunscreen)',
+                price: 1347,
+                image: 'image/41.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 9 -->
+         <div class="product" onclick="window.location.href='combo_9.html'">
+            <img src="image/49.png">
+            <h3>Beauty & Soul Honey & Almond Lotion + Vitamin C Face Serum + Charcoal Face Wash Combo</h3>
+            <div class="price">₹724 <span class="mrp">₹1,207</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 9,
+                name: 'Honey & Almond Lotion + Vitamin C Face Serum + Charcoal Face Wash Combo',
+                price: 724,
+                image: 'image/49.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 10 -->
+        <div class="product" onclick="window.location.href='combo_10.html'">
+            <img src="image/45.png">
+            <h3>Beauty & Soul Sunscreen SPF 45+ PA+++ + Ubtan Face Scrub + Vitamin C Face Serum Combo</h3>
+            <div class="price">₹994 <span class="mrp">₹1,657</span></div>
+            <div class="offer">(40% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 10,
+                name: 'Sunscreen SPF 45+ PA+++ + Ubtan Face Scrub + Vitamin C Face Serum Combo',
+                price: 994,
+                image: 'image/45.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 11 -->
+        <div class="product" onclick="window.location.href='body_lotion.html'">
+            <img src="image/24.png">
+            <h3>Beauty & Soul Honey & Almond Body Lotion (100ml)</h3>
+            <div class="price">₹155 <span class="mrp">₹239</span></div>
+            <div class="offer">(35% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 11,
+                name: 'Honey & Almond Body Lotion (100ml)',
+                price: 155,
+                image: 'image/24.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 12 -->
+        <div class="product" onclick="window.location.href='face_wash.html'">
+            <img src="image/25.png">
+            <h3>Beauty & Soul Charcoal Face Wash (100ml)</h3>
+            <div class="price">₹226 <span class="mrp">₹349</span></div>
+            <div class="offer">(35% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 12,
+                name: 'Charcoal Face Wash (100ml)',
+                price: 226,
+                image: 'image/25.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 13 -->
+        <div class="product" onclick="window.location.href='face_scrub.html'">
+            <img src="image/22.png">
+            <h3>Beauty & Soul Ubtan Face Scrub (100gm)</h3>
+            <div class="price">₹226 <span class="mrp">₹349</span></div>
+            <div class="offer">(35% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 13,
+                name: 'Ubtan Face Scrub (100gm)',
+                price: 226,
+                image: 'image/22.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 14 -->
+        <div class="product" onclick="window.location.href='vitamin_c.html'">
+            <img src="image/21.png">
+            <h3>Beauty & Soul Vitamin C Face Serum (30ml)</h3>
+            <div class="price">₹402 <span class="mrp">₹619</span></div>
+            <div class="offer">(35% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 14,
+                name: 'Vitamin C Face Serum (30ml)',
+                price: 402,
+                image: 'image/21.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+        <!-- PRODUCT 15 -->
+        <div class="product" onclick="window.location.href='sun_screen.html'">
+            <img src="image/23.png">
+            <h3>Beauty & Soul Sunscreen SPF 45+ PA+++ (100ml)</h3>
+            <div class="price">₹447 <span class="mrp">₹689</span></div>
+            <div class="offer">(35% OFF)</div>
+            <button onclick="event.stopPropagation(); addToCart({
+                id: 15,
+                name: 'Sunscreen SPF 45+ PA+++ (100ml)',
+                price: 447,
+                image: 'image/23.png'
+                })">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!--footer-->
+<div id="footer"></div>
+
+<script>
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("header").innerHTML = data;
+});
+</script>
+
+<script>
+fetch("footer.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("footer").innerHTML = data;
+});
+</script>
+
+<script>
+function openMenu() {
+    document.getElementById("mobileMenu").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+function closeMenu() {
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+</script>
+
+<script>
+function addToCart(product){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check product already exists
+  const existing = cart.find(item => item.id === product.id);
+
+  if(existing){
+    existing.qty += 1;
+  } else {
+    product.qty = 1;
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+
+  // redirect to cart page
+  window.location.href = "cart.html";
+}
+</script>
+
+<script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  let totalQty = 0;
+  cart.forEach(item => {
+    totalQty += item.qty;
+  });
+
+  const cartCountEl = document.getElementById("cartCount");
+  if (cartCountEl) {
+    cartCountEl.innerText = totalQty;
+  }
+}
+</script>
+
+<!-- <script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let totalQty = 0;
+
+  cart.forEach(item => totalQty += item.qty);
+
+  const el = document.getElementById("cartCount");
+  if (el) el.innerText = totalQty;
+} -->
+
+<script>
+fetch("header.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("header").innerHTML = data;
+
+  // 🔥 HEADER LOAD HONE KE BAAD
+  updateCartCount();
+});
+</script>
+
+
+</body>
+</html>
