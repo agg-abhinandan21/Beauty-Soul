@@ -7,7 +7,7 @@
 
 <h2>Checkout</h2>
 
-<form action="create_order.php" method="POST">
+<form method="POST" action="create_order.php">
 <input name="name" placeholder="Name" required><br><br>
 <input name="email" placeholder="Email" required><br><br>
 <input name="phone" placeholder="Phone" required><br><br>
