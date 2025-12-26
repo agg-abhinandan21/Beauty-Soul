@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About COSRX</title>
+    <title>About Beauty & Soul</title>
 
     <!-- LENIS -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/dist/lenis.min.js"></script>
@@ -117,11 +117,12 @@
 
         /* ------------------ BIG TITLE ------------------ */
         .big-title {
-            font-size: 70px;
+            display: none;
+            /* font-size: 70px;
             font-weight: bold;
             text-align: center;
             margin-top: 150px;
-            transition: 1s;
+            transition: 1s; */
         }
         .animate-title {
             transform: translate(-300px, -170px) scale(0.3);
@@ -203,6 +204,17 @@
         min-width: 300px;
         }
 
+        /* OUR PHILOSOPHY – TEXT BOOST */
+        .section-flex .text-box h2 {
+        font-size: 42px;
+        }
+
+        .section-flex .text-box p {
+        font-size: 20px;
+        line-height: 1.8;
+        }
+
+
         .section-flex .image-box {
         flex: 1;
         min-width: 280px;
@@ -212,10 +224,16 @@
 
         .section-flex .image-box img {
         width: 100%;
-        max-width: 380px;
+        max-width: 300px;
         border-radius: 20px;
         object-fit: cover;
         }
+
+        /* WHY CHOOSE US – IMAGE BIG */
+        .why-choose .image-box img {
+        max-width: 450px;
+        }
+
 
         /* ===== WHATSAPP FLOATING BUTTON ===== */
         .whatsapp-float {
@@ -336,6 +354,139 @@
         }
         }
 
+        /* ================= MOBILE FIX (ABOUT US) ================= */
+        @media (max-width: 768px) {
+
+        /* BODY SAFETY */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* BIG TITLE FIX */
+        .big-title {
+            font-size: 38px;
+            margin-top: 120px;
+        }
+
+        .animate-title {
+            transform: translate(0, -60px) scale(0.8);
+            opacity: 0;
+        }
+
+        /* HERO SECTION */
+        .about-hero {
+            flex-direction: column;
+            padding: 25px;
+            margin: 15px;
+        }
+
+        /* TEXT SECTION */
+        .about-text {
+            max-width: 100%;
+            min-width: auto;
+            text-align: center;
+        }
+
+        .about-text h2 {
+            font-size: 26px;
+        }
+
+        .about-text p {
+            font-size: 15px;
+        }
+
+        /* IMAGE SECTION */
+        .about-images {
+            width: 100%;
+            min-width: auto;
+            position: relative;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        .about-images img {
+            position: relative;
+            width: 80%;
+            max-width: 220px;
+            display: block;
+            margin: 15px auto;
+            animation: none; /* mobile me float band */
+        }
+
+        /* REMOVE ABSOLUTE OFFSETS */
+        .img1, .img2, .img3 {
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+        }
+
+        /* NORMAL SECTIONS */
+        .section {
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        .section h2 {
+            font-size: 26px;
+            text-align: center;
+        }
+
+        .section p {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        /* FLEX SECTIONS */
+        .section-flex {
+            flex-direction: column;
+            width: 90%;
+            gap: 25px;
+            text-align: center;
+        }
+
+        .section-flex .text-box,
+        .section-flex .image-box {
+            min-width: auto;
+        }
+
+        .section-flex .image-box img {
+            max-width: 260px;
+        }
+        
+
+        @media (max-width: 768px) {
+
+        .section-flex .text-box h2 {
+            font-size: 30px;
+        }
+
+        .section-flex .text-box p {
+            font-size: 17px;
+        }
+
+        .section-flex .image-box img {
+            max-width: 240px;
+        }
+        }
+
+        @media (max-width: 768px) {
+
+        .why-choose .image-box img {
+            max-width: 300px;
+        }
+
+        }
+
+
+        /* WHATSAPP BUBBLE */
+        .whatsapp-bubble {
+            font-size: 12px;
+            bottom: 95px;
+        }
+        }
+
+
     </style>
 </head>
 
@@ -405,7 +556,7 @@
 
 
     <!-- WHY CHOOSE US (TEXT LEFT + IMAGE RIGHT) -->
-    <div class="section-flex">
+    <div class="section-flex why-choose">
         <div class="text-box">
             <h2>💖 Why Choose Beauty & Soul?</h2>
             <p>🌿 <b>Clean, Safe & Effective Ingredients:</b> Dermatologist-approved, toxin-free ingredients.</p>
