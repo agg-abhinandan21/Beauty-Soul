@@ -201,7 +201,7 @@
 
 <div class="checkout-wrapper">
   <!-- LEFT: FORM -->
-  <form class="left-panel" method="POST" action="create_order.php">
+ <form class="left-panel" onsubmit="sendWhatsAppOrder(event)">
     <h2>Contact</h2>
 
     <label for="email">Email</label>
@@ -399,6 +399,54 @@ updateCartCount();
 </script>
 
 
+<script>
+function sendWhatsAppOrder(e) {
+  e.preventDefault();
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if(cart.length === 0){
+    alert("Cart is empty");
+    return;
+  }
+
+  // FORM VALUES
+  const name = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const address = document.getElementById("address").value;
+  const city = document.getElementById("city").value;
+  const state = document.getElementById("state").value;
+  const zip = document.getElementById("zip").value;
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+
+  let message = `🛍️ *New Order - Beauty & Soul* \n\n`;
+  message += `👤 Name: ${name}\n`;
+  message += `📞 Phone: ${phone}\n`;
+  message += `📧 Email: ${email}\n\n`;
+  message += `🏠 Address:\n${address}, ${city}, ${state} - ${zip}\n\n`;
+  message += `💳 Payment Method: ${payment}\n\n`;
+  message += `📦 Order Items:\n`;
+
+  let total = 0;
+  cart.forEach(item => {
+    const line = item.price * item.qty;
+    total += line;
+    message += `• ${item.name} (${item.qty} × ₹${item.price}) = ₹${line}\n`;
+  });
+
+  message += `\n💰 *Total Amount: ₹${total}*\n\n`;
+  message += `✅ Please confirm this order.`;
+
+  // 👉 APNA WHATSAPP NUMBER (country code ke sath)
+  const whatsappNumber = "919045444099";
+
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+
+  // OPTIONAL: cart clear
+  localStorage.removeItem("cart");
+}
+</script>
 
 
 </body>
