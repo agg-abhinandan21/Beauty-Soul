@@ -1,0 +1,1 @@
+const mongoose=require('mongoose');module.exports=mongoose.model('Order',new mongoose.Schema({items:Array,total:Number,address:String,status:{type:String,default:'Pending'},shipmentId:String}));

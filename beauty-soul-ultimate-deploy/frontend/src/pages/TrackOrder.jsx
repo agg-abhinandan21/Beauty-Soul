@@ -1,0 +1,1 @@
+import axios from 'axios';import {useState} from 'react';export default()=>{const [id,setId]=useState('');const [d,setD]=useState(null);return(<div><input onChange={e=>setId(e.target.value)}/><button onClick={async()=>setD((await axios.get('http://localhost:5000/api/orders/track/'+id)).data)}>Track</button><pre>{JSON.stringify(d,null,2)}</pre></div>)};

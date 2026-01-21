@@ -1,0 +1,5 @@
+const axios=require('axios');let token=null;
+async function login(){const r=await axios.post('https://apiv2.shiprocket.in/v1/external/auth/login',{email:process.env.SHIPROCKET_EMAIL,password:process.env.SHIPROCKET_PASSWORD});token=r.data.token;}
+async function getToken(){if(!token) await login(); return token;}
+exports.createShipment=async(order)=>{const t=await getToken();return (await axios.post('https://apiv2.shiprocket.in/v1/external/orders/create/adhoc',{order_id:order._id,order_date:new Date(),pickup_location:'Primary',billing_customer_name:'Customer',billing_address:order.address,billing_city:'Delhi',billing_pincode:'110001',billing_state:'Delhi',billing_country:'India',billing_phone:'9999999999',payment_method:'Prepaid',sub_total:order.total,order_items:order.items.map(i=>({name:i.name,sku:'SKU'+i._id,units:1,selling_price:i.price}))},{headers:{Authorization:`Bearer ${t}`}})).data;}
+exports.track=async(id)=>{const t=await getToken();return (await axios.get(`https://apiv2.shiprocket.in/v1/external/courier/track/shipment/${id}`,{headers:{Authorization:`Bearer ${t}`}})).data;}
