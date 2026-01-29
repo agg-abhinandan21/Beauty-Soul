@@ -1,1 +1,0 @@
-export default()=> (<div className='relative'><img src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9' className='w-full h-[520px] object-cover'/><div className='absolute inset-0 bg-black/30 flex items-center px-20'><h1 className='text-white text-6xl'>Embrace Natural Radiance</h1></div></div>);

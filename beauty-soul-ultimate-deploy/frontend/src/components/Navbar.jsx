@@ -1,1 +1,0 @@
-import {Link} from 'react-router-dom';export default()=> (<header className='border-b bg-white'><div className='flex justify-between px-16 py-4'><div>🔍</div><div className='text-center'><h1 className='text-4xl'>BS</h1><p>BEAUTY & SOUL</p></div><Link to='/cart'>🛒</Link></div></header>);

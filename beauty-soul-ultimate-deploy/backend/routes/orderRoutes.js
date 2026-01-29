@@ -1,1 +1,0 @@
-const r=require('express').Router();const {create,all,ship,trackOrder}=require('../controllers/orderController');const admin=require('../middleware/admin');r.post('/',create);r.get('/',admin,all);r.post('/ship/:id',admin,ship);r.get('/track/:id',trackOrder);module.exports=r;

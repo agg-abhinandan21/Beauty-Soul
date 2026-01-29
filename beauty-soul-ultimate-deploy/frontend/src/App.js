@@ -1,1 +1,0 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom';import Home from './pages/Home';import TrackOrder from './pages/TrackOrder';import Admin from './admin/AdminDashboard';export default()=> (<BrowserRouter><Routes><Route path='/' element={<Home/>}/><Route path='/track' element={<TrackOrder/>}/><Route path='/admin/dashboard' element={<Admin/>}/></Routes></BrowserRouter>);

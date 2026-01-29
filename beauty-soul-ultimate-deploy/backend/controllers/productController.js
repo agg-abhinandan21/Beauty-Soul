@@ -1,1 +1,0 @@
-const P=require('../models/Product');exports.all=async(req,res)=>res.json(await P.find());exports.add=async(req,res)=>res.json(await P.create(req.body));

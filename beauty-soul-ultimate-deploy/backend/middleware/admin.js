@@ -1,1 +1,0 @@
-const jwt=require('jsonwebtoken');module.exports=(req,res,next)=>{const t=req.headers.authorization?.split(' ')[1];const d=jwt.verify(t,process.env.JWT_SECRET);if(d.role!=='admin') return res.status(403).send('admin');next();};

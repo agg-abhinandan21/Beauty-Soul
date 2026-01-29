@@ -1,2 +1,0 @@
-const User=require('../models/User');const jwt=require('jsonwebtoken');const bcrypt=require('bcryptjs');
-exports.login=async(req,res)=>{const u=await User.findOne({email:req.body.email});if(!u||!(await bcrypt.compare(req.body.password,u.password))) return res.status(401).json({msg:'bad'});const t=jwt.sign({id:u._id,role:u.role},process.env.JWT_SECRET);res.json({token:t,role:u.role});};

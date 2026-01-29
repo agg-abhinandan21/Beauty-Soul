@@ -1,1 +1,0 @@
-const r=require('express').Router();const {all,add}=require('../controllers/productController');r.get('/',all);r.post('/',add);module.exports=r;
