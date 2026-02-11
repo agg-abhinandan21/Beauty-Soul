@@ -10,14 +10,91 @@
     <!-- Header Load -->
     <div id="header"></div>
 
-    <!-- Blog Content -->
-    <main style="padding: 20px;">
-        <h1>My Blog</h1>
-        <p>
-            Ye mera blog page ka content hai.  
-            Yahan tum apna article, image, ya SEO content likh sakte ho.
-        </p>
+    <main style="padding:20px; text-align:center;">
+
+        <h1>My Video Blog</h1>
+
+        <div class="reel-container">
+
+            <!-- Reel 1 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DSAMVeDk5qK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 2 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DR9iGzjk5wL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 3 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DR4UxHAk0xZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 4 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DR6-htjk5r9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 5 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DT48q96k11h/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 6 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DT0jKL3E8n7/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 7 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DUGOAlEE7I_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 8 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DUIsQwujr7m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 9 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DUQGTXRjsNl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+            <!-- Reel 10 -->
+            <blockquote class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/reel/DScr91Tk0F_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+            data-instgrm-version="14"></blockquote>
+
+        </div>
+
     </main>
+
+    <style>
+    .reel-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-items: center;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 900px) {
+        .reel-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .reel-container {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+
+    <script async src="https://www.instagram.com/embed.js"></script>
+
+
 
     <!-- Footer Load -->
     <div id="footer"></div>
